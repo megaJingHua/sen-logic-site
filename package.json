@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://mega1109.github.io/sen-logic-site",
+  "homepage": "https://github.com/megajinghua/sen-logic-site.git",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
