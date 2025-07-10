@@ -1,20 +1,9 @@
 <template>
   <div
-    class="font-sans min-h-screen text-center flex flex-col items-center bg-no-repeat bg-bottom bg-contain md:bg-[url('@/assets/home-banner-pc.png')]"
+    class="font-sans min-h-screen w-full h-full text-center flex flex-col relative bg-fixed bg-bottom bg-no-repeat bg-cover md:bg-[url('@/assets/home-banner-pc.png')] bg-[url('@/assets/home-banner-mobile.png')]"
   >
     <!-- 主視覺 -->
-    <div class="w-full relative md:h-[800px] h-[600px]">
-      <img
-        src="@/assets/home-banner-mobile.png"
-        class="md:hidden w-full h-full object-cover"
-        alt="首頁背景手機版"
-      />
-      <img
-        src="@/assets/home-banner-pc.png"
-        class="hidden md:block w-full h-full object-cover"
-        alt="首頁背景桌機版"
-      />
-
+    <div class="relative w-full max-w-xl z-10 text-[#2f5133] px-4">
       <!-- 標題、副標 -->
       <div
         class="absolute top-[80px] md:top-[80px] left-1/2 -translate-x-1/2 text-[#2f5133] text-center z-10 w-[90%] max-w-xl"
@@ -25,7 +14,7 @@
 
       <!-- Button 幼兒探索、家長專區、宅媽分享、贊助我們 -->
       <div
-        class="absolute top-[450px] md:top-[470px] left-1/2 -translate-x-1/2 flex flex-wrap gap-3 justify-center z-10"
+        class="absolute top-[480px] md:top-[470px] left-1/2 -translate-x-1/2 flex flex-wrap gap-3 justify-center z-10"
       >
         <RouterLink to="/explore" class="btn disabled">
           <PuzzlePieceIcon
@@ -40,28 +29,10 @@
         <RouterLink to="/mom-share" class="btn">宅媽分享</RouterLink>
         <RouterLink to="/support" class="btn disabled">贊助森森</RouterLink>
       </div>
-      <!-- 向下滑提示 -->
-      <!-- <div
-        class="scroll-hint fixed bottom-6 right-4 z-50 flex flex-col items-center space-y-1"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8 text-green-700 animate-bounce"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-        <span class="text-green-700 text-xs animate-fade-slide">向下滑</span>
-      </div> -->
-      <!-- 啟程篇 -->
-      <!-- <JourneyArticle /> -->
+      <div class="absolute top-[635px] md:top-[470px]">
+        <!-- 啟程篇 -->
+        <JourneyArticle />
+      </div>
       <!-- Footer -->
       <!-- <p>© 2025 森森邏輯</p> -->
     </div>

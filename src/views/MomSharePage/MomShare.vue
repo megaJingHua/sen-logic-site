@@ -5,7 +5,7 @@
     <!-- 主視覺 -->
     <img
       src="@/assets/mom-share-bk.png"
-      class="absolute bottom-0 left-0 w-full h-full object-cover z-0"
+      class="absolute bottom-0 left-0 w-full object-cover z-0"
       alt="首頁背景手機版"
     />
     <div
