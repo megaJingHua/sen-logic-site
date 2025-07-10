@@ -27,37 +27,76 @@
       <div
         class="absolute top-[450px] md:top-[470px] left-1/2 -translate-x-1/2 flex flex-wrap gap-3 justify-center z-10"
       >
-        <RouterLink to="/explore" class="btn">
+        <RouterLink to="/explore" class="btn disabled">
           <PuzzlePieceIcon
             class="h-5 w-5 mr-2 inline-block"
           />幼兒探索</RouterLink
         >
-        <RouterLink to="/parents" class="btn"
+        <RouterLink to="/parents" class="btn disabled"
           ><UserGroupIcon
             class="h-5 w-5 mr-2 inline-block"
           />家長專區</RouterLink
         >
-        <RouterLink to="/parents" class="btn">宅媽分享</RouterLink>
-        <RouterLink to="/support" class="btn">贊助我們</RouterLink>
+        <RouterLink to="/mom-share" class="btn">宅媽分享</RouterLink>
+        <RouterLink to="/support" class="btn disabled">贊助森森</RouterLink>
       </div>
-
+      <!-- 向下滑提示 -->
+      <!-- <div
+        class="scroll-hint fixed bottom-6 right-4 z-50 flex flex-col items-center space-y-1"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8 text-green-700 animate-bounce"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+        <span class="text-green-700 text-xs animate-fade-slide">向下滑</span>
+      </div> -->
       <!-- 啟程篇 -->
-        <JourneyArticle />
+      <!-- <JourneyArticle /> -->
       <!-- Footer -->
-      <p>© 2025 森森邏輯</p>
+      <!-- <p>© 2025 森森邏輯</p> -->
     </div>
   </div>
 </template>
 
 <script setup>
 import { RouterLink } from "vue-router";
-import JourneyArticle from '@/components/JourneyArticle.vue'
+import JourneyArticle from "@/components/JourneyArticle.vue";
 import {
   PuzzlePieceIcon,
   UserGroupIcon,
   ChatBubbleLeftRightIcon,
   HeartIcon,
 } from "@heroicons/vue/24/solid";
+
+import { ref, onMounted, onUnmounted } from "vue";
+
+const showScrollHint = ref(true);
+
+const handleScroll = () => {
+  if (window.scrollY > 100) {
+    showScrollHint.value = false;
+  } else {
+    showScrollHint.value = true;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <style scoped>
@@ -74,6 +113,17 @@ import {
   font-size: 0.875rem;
 }
 
+.btn:disabled,
+.btn.disabled {
+  background-color: #9ca3af; /* 灰階顏色 */
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.btn:disabled:hover,
+.btn.disabled:hover {
+  background-color: #9ca3af; /* 灰階 */
+}
 @media (min-width: 768px) {
   .btn {
     font-size: 1rem;
@@ -91,5 +141,19 @@ h3,
 p {
   margin: 10px;
 }
+@keyframes fade-slide {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(5px);
+  }
+}
 
+.animate-fade-slide {
+  animation: fade-slide 1.5s infinite;
+}
 </style>

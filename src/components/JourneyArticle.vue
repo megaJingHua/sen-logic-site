@@ -1,33 +1,31 @@
 <template>
   <section class="news px-4 py-8 text-[#2f5133] max-w-md mx-auto">
-    <!-- 文章標題 -->
-    <h2>《啟程篇 | 幼兒邏輯怎麼培養？》</h2>
-    <h2 class="font-bold mb-4">從生活中的小事開始！</h2>
+    <div class="news-area">
 
+    <!-- 文章標題 -->
+    <h2>啟程篇 | 幼兒邏輯怎麼培養？從生活中的小事開始！</h2>
+    <p class="mb-2">
+      對3～6歲的孩子來說，邏輯不是數學式的推理，而是：「知道事情為什麼這樣發生、接下來會發生什麼。」
+    </p>
+    <p class="text-sm">
+      孩子若能理解「前因後果」與「順序流程」，就會開始建立<strong>因果推論能力、問題解決力</strong>，這就是邏輯思維的基礎。
+    </p>
     <!-- 第一小節 -->
     <div class="text-left mb-6">
-      <h2 class="text-xl font-semibold flex items-center mb-2">🧠 為什麼要培養邏輯力？</h2>   <!-- 森寶介紹-->
-    <div class="flex justify-center mb-6">
-      <!-- <img
+      <div class="flex justify-center mb-6">
+        <!-- <img
         src="@/assets/啟程篇-rabbit.png"
         alt="森寶兔子"
         class="w-10 h-auto"
       /> -->
+      </div>
     </div>
-      <p class="mb-2">
-        對3～6歲的孩子來說，邏輯不是數學式的推理，而是：
-      </p>
-      <blockquote class="border-l-4 border-green-400 pl-2 italic mb-2 text-sm">
-        「知道事情為什麼這樣發生、接下來會發生什麼。」
-      </blockquote>
-      <p class="text-sm">
-        孩子若能理解「前因後果」與「順序流程」，就會開始建立<strong>因果推論能力、問題解決力</strong>，這就是邏輯思維的基礎。
-      </p>
-    </div>
- 
+
     <!-- 第二小節：拼圖表格 -->
     <div class="text-left mb-6">
-      <h2 class="text-xl font-semibold flex items-center mb-2">🧩 日常生活就是最好的邏輯教室！</h2>
+      <h2 class="text-xl font-semibold flex items-center mb-2">
+        🧩 日常生活就是最好的邏輯教室！
+      </h2>
       <p class="mb-4 text-sm">
         以「早上起床」為例，把日常流程切成一塊塊「邏輯拼圖」：
       </p>
@@ -70,14 +68,17 @@
         </table>
       </div>
       <p class="mt-2 text-sm">
-        👉 <strong>當孩子每天反覆執行這個流程，他就會內建一個邏輯模型：</strong><br />
+        👉 <strong>當孩子每天反覆執行這個流程，他就會內建一個邏輯模型：</strong
+        ><br />
         「完成前面的步驟，就能完成今天的任務！」
       </p>
     </div>
 
     <!-- 第三小節：宅媽分享 -->
     <div class="text-left mb-6">
-      <h2 class="text-xl font-semibold flex items-center mb-2">💡 宅媽分享 | 工程師的思維＝幼兒的生活流程</h2>
+      <h2 class="text-xl font-semibold flex items-center mb-2">
+        💡 宅媽分享 | 工程師的思維＝幼兒的生活流程
+      </h2>
       <p class="mb-2 text-sm">
         孩子建立「流程 → 結果」的邏輯觀念，這跟寫程式非常像：
       </p>
@@ -119,11 +120,8 @@ if (起床) {
 
     <!-- 開始任務按鈕 -->
     <div class="text-center">
-      <button
-        class="btn"
-      >
-        開始任務 GO!
-      </button>
+      <button class="btn">開始任務 GO!</button>
+    </div>
     </div>
   </section>
 </template>
@@ -133,12 +131,11 @@ if (起床) {
 </script>
 
 <style scoped>
-
 .news {
-    background-color: #fafafa6b;
-    border-radius: 5px;
-    margin: 5px;
-    padding: 3px 12px;
+background-color:#4b814b;
+}
+.news-area{
+  padding: 15px;
 }
 .btn {
   padding: 0.3rem 1rem;
