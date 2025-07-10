@@ -1,6 +1,6 @@
 <template>
   <div
-    class="font-sans min-h-screen w-full h-full text-center flex flex-col relative bg-fixed bg-bottom bg-no-repeat bg-cover md:bg-[url('@/assets/home-banner-pc.png')] bg-[url('@/assets/home-banner-mobile.png')]"
+    class="font-sans min-h-screen w-full h-full text-center flex flex-col relative bg-fixed bg-no-repeat bg-[url('@/assets/home-banner-mobile.png')] bg-top bg-contain md:bg-[url('@/assets/home-banner-pc.png')] md:bg-bottom md:bg-cover"
   >
     <!-- 主視覺 -->
     <div class="relative w-full max-w-xl z-10 text-[#2f5133] px-4">
