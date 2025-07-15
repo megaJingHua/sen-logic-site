@@ -12,9 +12,10 @@
         孩子若能理解「前因後果」與「順序流程」，就會開始建立<strong>因果推論能力、問題解決力</strong>，這就是邏輯思維的基礎。
       </p>
     </div>
-    <div class="news-area">
+    <p style="color:#bababa; margin:5px;">Coming Soon... 在 IG @mega_jing_hua 公告上線!<br>可以先看看「宅媽干啥」:)</p>
+    <!-- <div class="news-area"> -->
       <!-- 第二小節：拼圖表格 -->
-      <div class="text-left mb-6">
+      <!-- <div class="text-left mb-6">
         <h2 class="text-xl font-semibold flex items-center mb-2">
           🧩 日常生活就是最好的邏輯教室！
         </h2>
@@ -65,10 +66,10 @@
           ><br />
           「完成前面的步驟，就能完成今天的任務！」
         </p>
-      </div>
+      </div> -->
 
       <!-- 第三小節：宅媽分享 -->
-      <div class="text-left mb-6">
+      <!-- <div class="text-left mb-6">
         <h2 class="text-xl font-semibold flex items-center mb-2">
           💡 宅媽分享 | 工程師的思維＝幼兒的生活流程
         </h2>
@@ -87,10 +88,10 @@ if (起床) {
         <p class="mt-2 text-sm">
           每一個步驟，都是任務的「前提」，也是邏輯思考的一部分。
         </p>
-      </div>
+      </div> -->
 
       <!-- 第四小節：怎麼玩 -->
-      <div class="text-left mb-6">
+      <!-- <div class="text-left mb-6">
         <h2 class="text-xl font-semibold mb-2">🐾 森森邏輯怎麼玩？</h2>
         <ul class="list-decimal list-inside text-sm space-y-1">
           <li>拆解任務流程，收集起床後需要用到的東西</li>
@@ -100,27 +101,27 @@ if (起床) {
         <p class="mt-2 text-sm">
           例如：「幫森寶安排出門的順序」、「誰先誰後才不會忘記東西」等情境，讓孩子在遊戲中學邏輯。
         </p>
-      </div>
+      </div> -->
 
       <!-- 小提醒 -->
-      <div class="text-left mb-6">
+      <!-- <div class="text-left mb-6">
         <h2 class="text-xl font-semibold mb-2">📌 小提醒給家長</h2>
         <ul class="list-disc list-inside text-sm space-y-1">
           <li>多問孩子：「你為什麼這樣做？」幫助他們表達自己的想法。</li>
           <li>引導孩子「講出流程」：例如「你覺得換完衣服後要做什麼？」</li>
           <li>不用強調「對錯」，而是協助他們思考「為什麼會這樣」。</li>
         </ul>
-      </div>
+      </div> -->
 
       <!-- 開始任務按鈕 -->
-      <div class="text-center">
+      <!-- <div class="text-center">
         <RouterLink to="/explore" class="btn disabled">
           <PuzzlePieceIcon
             class="h-5 w-5 mr-2 inline-block"
           />任務開始 GO!</RouterLink
         >
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
   </section>
 </template>
 

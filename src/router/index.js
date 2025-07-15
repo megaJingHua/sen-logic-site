@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LearnVue3 from '@/views//MomSharePage/LearnVue3/LearnVue3.vue'
 import HomePage from '@/views/HomePage.vue'
 import MomShare from '@/views/MomSharePage/MomShare.vue'
 import day1 from '@/components/learnVue3/day1.vue'
@@ -11,9 +10,10 @@ const routes = [
   { path: '/parents', component: { template: '<div>家長專區</div>' } },
   { path: '/mom-share', component:  MomShare},
   { path: '/support', component: { template: '<div>贊助我們</div>' } },
+  
+  { path: '/day1', component: day1 },
   {
     path: '/learn-vue3',
-    component: LearnVue3,
     children: [
       { path: 'day1', name: 'LearnDay1', component: day1 },
       { path: 'day2', name: 'LearnDay2', component: day2 },

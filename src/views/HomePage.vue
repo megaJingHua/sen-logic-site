@@ -1,42 +1,44 @@
 <template>
-  <div
-    class="font-sans min-h-screen w-full h-full text-center flex flex-col relative bg-fixed bg-no-repeat bg-[url('@/assets/home-banner-mobile.png')] bg-top bg-contain md:bg-[url('@/assets/home-banner-pc.png')] md:bg-bottom md:bg-cover"
-  >
-    <!-- 主視覺 -->
-    <div class="relative w-full max-w-xl z-10 text-[#2f5133] px-4">
-      <!-- 標題、副標 -->
-      <div
-        class="absolute top-[80px] md:top-[80px] left-1/2 -translate-x-1/2 text-[#2f5133] text-center z-10 w-[90%] max-w-xl"
-      >
-        <h1 class="text-2xl md:text-4xl font-bold">寶哥媽咪 × 森森邏輯</h1>
-        <p class="text-sm md:text-lg mt-2">親子一起玩邏輯，啟動未來程式腦</p>
-      </div>
+  <MobileOnly>
+    <div
+      class="font-sans min-h-screen w-full h-full text-center flex flex-col relative bg-fixed bg-no-repeat bg-[url('@/assets/home-banner-mobile.png')] bg-top bg-contain md:bg-[url('@/assets/home-banner-pc.png')] md:bg-bottom md:bg-cover"
+    >
+      <!-- 主視覺 -->
+      <div class="relative w-full max-w-xl z-10 text-[#2f5133] px-4">
+        <!-- 標題、副標 -->
+        <div
+          class="absolute top-[80px] md:top-[80px] left-1/2 -translate-x-1/2 text-[#2f5133] text-center z-10 w-[90%] max-w-xl"
+        >
+          <h1 class="text-2xl md:text-4xl font-bold">森森邏輯 × 寶哥宅媽 </h1>
+          <p class="text-sm md:text-lg mt-2">親子一起玩邏輯，啟動未來程式腦</p>
+        </div>
 
-      <!-- Button 幼兒探索、家長專區、宅媽分享、贊助我們 -->
-      <div
-        class="absolute top-[480px] md:top-[470px] left-1/2 -translate-x-1/2 flex flex-wrap gap-3 justify-center z-10"
-      >
-        <RouterLink to="/explore" class="btn disabled">
-          <PuzzlePieceIcon
-            class="h-5 w-5 mr-2 inline-block"
-          />幼兒探索</RouterLink
+        <!-- Button 幼兒探索、家長專區、宅媽分享、贊助我們 -->
+        <div
+          class="absolute top-[480px] md:top-[470px] left-1/2 -translate-x-1/2 flex flex-wrap gap-3 justify-center z-10"
         >
-        <RouterLink to="/parents" class="btn disabled"
-          ><UserGroupIcon
-            class="h-5 w-5 mr-2 inline-block"
-          />家長專區</RouterLink
-        >
-        <RouterLink to="/mom-share" class="btn">宅媽分享</RouterLink>
-        <RouterLink to="/support" class="btn disabled">贊助森森</RouterLink>
+          <RouterLink to="/explore" class="btn disabled">
+            <PuzzlePieceIcon
+              class="h-5 w-5 mr-2 inline-block"
+            />幼兒探索</RouterLink
+          >
+          <RouterLink to="/parents" class="btn disabled"
+            ><UserGroupIcon
+              class="h-5 w-5 mr-2 inline-block"
+            />家長專區</RouterLink
+          >
+          <RouterLink to="/mom-share" class="btn">宅媽干啥</RouterLink>
+          <RouterLink to="/support" class="btn disabled">贊助森森</RouterLink>
+        </div>
+        <div class="absolute top-[635px] md:top-[470px]">
+          <!-- 啟程篇 -->
+          <JourneyArticle />
+        </div>
+        <!-- Footer -->
+        <!-- <p>© 2025 森森邏輯</p> -->
       </div>
-      <div class="absolute top-[635px] md:top-[470px]">
-        <!-- 啟程篇 -->
-        <JourneyArticle />
-      </div>
-      <!-- Footer -->
-      <!-- <p>© 2025 森森邏輯</p> -->
     </div>
-  </div>
+  </MobileOnly>
 </template>
 
 <script setup>
@@ -48,8 +50,8 @@ import {
   ChatBubbleLeftRightIcon,
   HeartIcon,
 } from "@heroicons/vue/24/solid";
-
 import { ref, onMounted, onUnmounted } from "vue";
+import MobileOnly from '@/components/MobileOnly.vue'
 
 const showScrollHint = ref(true);
 
