@@ -21,14 +21,14 @@
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </RouterLink>
-          <h1 class="text-2xl md:text-4xl font-bold">Day1 Vue 3 是什麼?</h1>
+          <h2 class="text-2xl md:text-4xl font-bold">Day1 Vue 3 是什麼?</h2>
         </div>
         <div class="day-content">
           <div class="mb-4 text-[#3a5a40]">
             你現在看到的網頁畫面，大多是用「前端框架」做出來的。Vue 3
             就是其中一個超人氣框架，它就像「做互動網頁的積木工具箱」，讓工程師能快速拼出會動的網頁畫面。<br /><br />
             <h2 class="text-xl font-bold text-[#4b814b]">
-              🌱Vue 3 最厲害的地方是什麼？
+              🌱 Vue3 最厲害的地方是？
             </h2>
             <p>
               💡 資料變了，畫面就會自動改！<br />
@@ -85,12 +85,12 @@ h1 {
 }
 &lt;/style&gt;</code></pre>
             <h2 class="text-xl font-bold text-[#4b814b] mt-6 mb-2">
-              🌱宿業有專攻怎麼看?
+              🌱術業有專攻
             </h2>
 
             <ul class="list-disc pl-6 mb-4 text-[#3a5a40]">
               <li>
-                一個
+                Vue 3 是一個
                 <b>漸進式框架（Progressive Framework）</b>：可以只用來寫前端
                 UI，也能搭配 Vue Router、Pinia 做完整
                 SPA，簡單來說可以從小用起（小功能 /

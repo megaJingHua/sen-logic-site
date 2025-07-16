@@ -18,7 +18,7 @@
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </RouterLink>
-          <h1 class="text-2xl md:text-4xl font-bold">森森邏輯 × 宅媽干啥?</h1>
+          <h1 class="text-2xl md:text-4xl font-bold">森森邏輯×宅媽干啥</h1>
         </div>
         <p class="text-sm md:text-lg mt-2 what-description">
           最初宅媽是從前端工程師開始踏入網頁世界的。簡單來說，前端工程師就像是網頁的設計師，讓畫面會動、操作順暢，使用者體驗更好
