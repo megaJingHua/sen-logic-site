@@ -1,7 +1,7 @@
 <template>
   <div class="day-card">
     <div class="day-header" @click="toggle">
-      <span class="day-number">Day {{ day.id }}</span>
+      <span class="day-number">Day{{ day.id }}</span>
       <span class="day-title">{{ day.title }}</span>
       <span class="arrow">{{ expanded ? "▲" : "▼" }}</span>
     </div>

@@ -24,4 +24,7 @@ const routes = [
 export default createRouter({
   history: createWebHistory('/sen-logic-site/'),
   routes,
+  scrollBehavior() {
+    return { top: 0 }
+  }
 })

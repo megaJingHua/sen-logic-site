@@ -120,6 +120,8 @@ h1 {
   margin: 0 auto;
   padding-top: 40px;
   padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
   text-align: center;
 }
 .progress-title {
@@ -132,7 +134,7 @@ h1 {
 .cards-section {
   max-width: 480px;
   margin: 0 auto;
-  padding: 0 8px 40px 8px;
+  padding: 0 16px 40px 16px;
 }
 
 </style>
