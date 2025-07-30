@@ -86,7 +86,7 @@
 <script setup>
 import { ref, computed } from "vue";
 
-const image = "/public/puzzle.png";
+const image = "/assets/puzzle.png";
 const boxSize = 300;
 const selectedSize = ref("3x3");
 const availableTiles = ref([]);
