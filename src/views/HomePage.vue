@@ -17,11 +17,16 @@
         <div
           class="absolute top-[450px] md:top-[450px] left-1/2 -translate-x-1/2 grid grid-cols-2 gap-2 justify-center z-10 max-w-xs"
         >
-          <RouterLink to="/explore" class="btn disabled">
+          <RouterLink to="/explore" class="btn">
+            <PuzzlePieceIcon
+              class="h-5 w-5 mr-2 inline-block"
+            />測試中...</RouterLink
+          >
+          <!-- <RouterLink to="/explore" class="btn">
             <PuzzlePieceIcon
               class="h-5 w-5 mr-2 inline-block"
             />幼兒探索</RouterLink
-          >
+          > -->
           <RouterLink to="/parents" class="btn disabled"
             ><UserGroupIcon
               class="h-5 w-5 mr-2 inline-block"
@@ -73,7 +78,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-
 h1,
 h2,
 h3,
