@@ -132,7 +132,7 @@
 <script setup>
 import { ref } from "vue";
 import MobileOnly from "@/components/MobileOnly.vue";
-const message = ref("Hallo Vue3!");
+const message = ref("Hello Vue3!");
 const count = ref(0);
 </script>
 

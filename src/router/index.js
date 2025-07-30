@@ -11,8 +11,8 @@ const routes = [
   { path: '/parents', component: { template: '<div>家長專區</div>' } },
   { path: '/mom-share', component: MomShare },
   { path: '/support', component: { template: '<div>贊助我們</div>' } },
-  { path: '/day1', component: day1 },
-  { path: '/day2', component: day2 }
+  { path: '/learn-vue3/day1', component: day1 },
+  { path: '/learn-vue3/day2', component: day2 }
 ]
 
 export default createRouter({

@@ -1,6 +1,7 @@
 <template>
-  <div class="max-w-md mx-auto py-6 text-center">
-    <h2 class="text-xl font-bold mb-4">拼圖小遊戲 🧩</h2>
+  <MobileOnly>
+    <div class="max-w-md mx-auto py-6 text-center">
+      <h2 class="text-xl font-bold mb-4">拼圖小遊戲 🧩</h2>
 
     <!-- 難度切換 -->
     <div class="mb-4">
@@ -80,13 +81,16 @@
     <div class="mt-4">
       <p v-if="isComplete" class="text-green-600 font-bold">🎉 拼圖完成！</p>
     </div>
-  </div>
+    </div>
+  </MobileOnly>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
+import puzzleImage from "@/assets/puzzle.png";
+import MobileOnly from "@/components/MobileOnly.vue";
 
-const image = "/assets/puzzle.png";
+const image = puzzleImage;
 const boxSize = 300;
 const selectedSize = ref("3x3");
 const availableTiles = ref([]);
