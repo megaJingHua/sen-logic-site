@@ -40,10 +40,12 @@ onUnmounted(() => {
   color: #b91c1c;
   font-size: 1.2em;
   background: #fff0f1;
-  border-radius: 12px;
-  padding: 32px 24px;
-  box-shadow: 0 2px 12px #0001;
+  border-radius: 16px;
+  padding: 40px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   max-width: 320px;
+  border: 2px solid #fecaca;
+  backdrop-filter: blur(10px);
 }
 .mobile-warning svg {
   margin-bottom: 12px;

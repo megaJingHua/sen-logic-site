@@ -131,34 +131,13 @@ if (起床) {
 
 <style scoped>
 .news-area {
-  padding: 15px;
-  background-color: rgba(255, 255, 255, 0.212);
-  margin: 8px;
-  border-radius: 8px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 12px;
+  border-radius: 12px;
   text-align: justify;
-}
-.btn {
-  padding: 0.3rem 1rem;
-  margin: 3px;
-  background-color: #4b814b;
-  color: white;
-  border-radius: 5px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  display: inline-block;
-  font-size: 0.875rem;
-}
-
-.btn:disabled,
-.btn.disabled {
-  background-color: #9ca3af; /* 灰階顏色 */
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.9;
-}
-.btn:disabled:hover,
-.btn.disabled:hover {
-  background-color: #9ca3af; /* 灰階 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 </style>

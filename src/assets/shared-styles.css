@@ -1,0 +1,99 @@
+/* 共用按鈕樣式 */
+.btn {
+  padding: 0.5rem 0.6rem;
+  margin: 4px;
+  background-color: #4b814b;
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-block;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn:hover {
+  background-color: #376637;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:disabled,
+.btn.disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.btn:disabled:hover,
+.btn.disabled:hover {
+  background-color: #9ca3af;
+}
+
+/* 返回按鈕樣式 */
+.back-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0f2d8;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  margin-right: 4px;
+  transition: background 0.2s;
+  border: 2px solid #a3d3a1;
+}
+
+.back-icon-btn:hover {
+  background: #b7e5b4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 程式碼區塊樣式 */
+.code-block {
+  background-color: #1e1e1e;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  overflow-x: auto;
+  text-align: left;
+  font-size: 14px;
+  margin: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* 響應式按鈕 */
+@media (min-width: 768px) {
+  .btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* 學習頁面標題行樣式 */
+.learn-page .title-row {
+  padding: 16px 16px 0 16px;
+}
+
+/* 學習頁面內容樣式 */
+.learn-page .day-content {
+  background-color: #f8f8e8;
+  padding: 0px 24px;
+  margin: 16px 0;
+}
+
+/* 演示區塊樣式 */
+.demo-block {
+  background-color: #e4e4e4;
+  border: 1.8px solid #b1b1b1;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  text-align: left;
+  font-size: 14px;
+  margin: 8px;
+} 

@@ -9,13 +9,13 @@
         <div
           class="absolute top-[80px] md:top-[80px] left-1/2 -translate-x-1/2 text-[#2f5133] text-center z-10 w-[90%] max-w-xl"
         >
-          <h1 class="text-2xl md:text-4xl font-bold">森森邏輯 × 寶哥宅媽 </h1>
+          <h1 class="text-2xl md:text-4xl font-bold">森森邏輯 × 寶哥宅媽</h1>
           <p class="text-sm md:text-lg mt-2">親子一起玩邏輯，啟動未來程式腦</p>
         </div>
 
         <!-- Button 幼兒探索、家長專區、宅媽分享、贊助我們 -->
         <div
-          class="absolute top-[480px] md:top-[470px] left-1/2 -translate-x-1/2 flex flex-wrap gap-3 justify-center z-10"
+          class="absolute top-[450px] md:top-[450px] left-1/2 -translate-x-1/2 grid grid-cols-2 gap-2 justify-center z-10 max-w-xs"
         >
           <RouterLink to="/explore" class="btn disabled">
             <PuzzlePieceIcon
@@ -51,7 +51,7 @@ import {
   HeartIcon,
 } from "@heroicons/vue/24/solid";
 import { ref, onMounted, onUnmounted } from "vue";
-import MobileOnly from '@/components/MobileOnly.vue'
+import MobileOnly from "@/components/MobileOnly.vue";
 
 const showScrollHint = ref(true);
 
@@ -73,40 +73,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.btn {
-  padding: 0.3rem 1rem;
-  margin: 3px;
-  background-color: #4b814b;
-  color: white;
-  border-radius: 5px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  display: inline-block;
-  font-size: 0.875rem;
-}
-
-.btn:disabled,
-.btn.disabled {
-  background-color: #9ca3af; /* 灰階顏色 */
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.9;
-}
-.btn:disabled:hover,
-.btn.disabled:hover {
-  background-color: #9ca3af; /* 灰階 */
-}
-@media (min-width: 768px) {
-  .btn {
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-  }
-}
-
-.btn:hover {
-  background-color: #376637;
-}
 
 h1,
 h2,

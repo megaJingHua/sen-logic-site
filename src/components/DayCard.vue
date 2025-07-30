@@ -11,7 +11,6 @@
         <RouterLink
           v-if="!day.comming_soon"
           :to="'/learn-vue3/day' + day.id"
-          class="btn"
         >
           <button class="complete-btn">進入 Day {{ day.id }} 學習</button>
         </RouterLink>
@@ -40,8 +39,15 @@ function toggle() {
   border-radius: 18px;
   margin: 16px 0;
   padding: 0;
-  background: #f8f8e8a2;
+  background: rgba(248, 248, 232, 0.95);
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 .day-header {
   display: flex;
@@ -52,6 +58,11 @@ function toggle() {
   padding: 16px;
   cursor: pointer;
   user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.day-header:hover {
+  background-color: rgba(163, 211, 161, 0.1);
 }
 .day-number {
   background: #2f5133;
@@ -87,14 +98,19 @@ function toggle() {
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 8px 24px;
+  padding: 12px 24px;
   font-size: 1em;
+  font-weight: 500;
   cursor: pointer;
   width: 100%;
-  transition: background 0.1s;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .complete-btn:hover {
-  background: #7bb274;
+  background: #6ba064;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 .completed-label {
   background: #e0e8d8;

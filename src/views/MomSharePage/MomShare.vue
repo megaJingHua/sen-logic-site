@@ -24,7 +24,9 @@
           最初宅媽是從前端工程師開始踏入網頁世界的。簡單來說，前端工程師就像是網頁的設計師，讓畫面會動、操作順暢，使用者體驗更好
           也因為前端變化快速，才有了「宅媽干啥？」這個學習筆記，一起學習、一起成長。
         </p>
-        <h3 class="progress-title">30 天學習 Vue3 ({{ completedDays }}/30 天)</h3>
+        <h3 class="progress-title">
+          30 天學習 Vue3 ({{ completedDays }}/30 天)
+        </h3>
         <ProgressBar :progress="completedDays / 30" />
       </div>
       <div class="cards-section">
@@ -41,24 +43,24 @@ import { ref, computed } from "vue";
 import { RouterLink } from "vue-router";
 import ProgressBar from "@/components/ProgressBar.vue";
 import DayCard from "@/components/DayCard.vue";
-import MobileOnly from '@/components/MobileOnly.vue'
+import MobileOnly from "@/components/MobileOnly.vue";
 
 const days = ref([
   {
     id: 1,
     title: "Vue 3 是什麼?",
     detail:
-      "Vue 3 是一個漸進式的前端框架，能快速打造互動式網頁。它具備響應式系統、組件化設計與 Composition API，透過 .vue 單文件組件實作畫面、邏輯與樣式整合，是現代前端工程師的重要工具。今天從最基本的組件實作開始！",
+      "你現在看到的網頁畫面，大多是用「前端框架」做出來的。Vue 3 就是其中一個超人氣框架，它就像「做互動網頁的積木工具箱」，讓工程師能快速拼出會動的網頁畫面。",
     router: "/day1",
-    comming_soon:false,
+    comming_soon: false,
   },
   {
     id: 2,
-    title: "組件拆分與父子傳值",
+    title: "組件是什麼？我為什麼要拆？",
     detail:
-      "學習如何將畫面切成多個小組件，並透過 props 傳值與 emit 傳事件，建立組件間的溝通機制。實作 Todo List，從輸入、顯示到刪除，體驗 Vue 最基本的資料流動方式！",
+      "  你可以把網頁想像成一個樂高積木城堡。每個「積木」就是一個組件（component）比如：按鈕是一塊積木、輸入框是一塊積木、待辦清單的每一項也是一塊積木。<br /><br />今天帶你用最簡單的例子——「Todo List」來學會：✅組件拆分 ✅父子傳值 ✅用 props 傳資料，用emit 回報訊息！",
     router: "/day2",
-    comming_soon:true,
+    comming_soon: false,
   },
   {
     id: 3,
@@ -66,7 +68,7 @@ const days = ref([
     detail:
       "深入理解 Vue 的 computed 與 watch 差異，掌握資料變動的監控與處理時機。透過優化版 Todo List，加入完成狀態切換與資料同步，進一步體驗組件間的互動與資料追蹤技巧！",
     router: "/day3",
-    comming_soon:true,
+    comming_soon: true,
   },
 ]);
 
@@ -92,22 +94,7 @@ function markComplete(idx) {
   justify-content: center;
   margin-bottom: 4px;
 }
-.back-icon-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #e0f2d8;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  margin-right: 4px;
-  transition: background 0.2s;
-  border: 2px solid #a3d3a1;
-}
-.back-icon-btn:hover {
-  background: #b7e5b4;
-  box-shadow: 0 2px 8px #0001;
-}
+
 .what-description {
   padding: 0 16px;
   text-align: justify;
@@ -136,5 +123,4 @@ h1 {
   margin: 0 auto;
   padding: 0 16px 40px 16px;
 }
-
 </style>
