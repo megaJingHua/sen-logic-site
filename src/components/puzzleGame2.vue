@@ -5,7 +5,11 @@
     <!-- 難度切換 -->
     <div class="mb-4">
       <label class="font-semibold text-sm mr-2">選擇難度：</label>
-      <select v-model="selectedSize" @change="initGame" class="border px-2 py-1 rounded">
+      <select
+        v-model="selectedSize"
+        @change="initGame"
+        class="border px-2 py-1 rounded"
+      >
         <option value="2x2">2x2</option>
         <option value="2x3">2x3</option>
         <option value="3x3">3x3</option>
@@ -18,8 +22,8 @@
       class="relative mx-auto mb-6 grid gap-1 border"
       :style="{
         width: boxSize + 'px',
-        height: (boxSize * rows / cols) + 'px',
-        gridTemplateColumns: `repeat(${cols}, 1fr)`
+        height: (boxSize * rows) / cols + 'px',
+        gridTemplateColumns: `repeat(${cols}, 1fr)`,
       }"
     >
       <div
@@ -32,11 +36,11 @@
           v-if="tile"
           :style="{
             backgroundImage: `url(${image})`,
-            backgroundSize: `${boxSize}px ${(boxSize * rows / cols)}px`,
+            backgroundSize: `${boxSize}px ${(boxSize * rows) / cols}px`,
             backgroundPosition: tile.bgPos,
             backgroundRepeat: 'no-repeat',
             width: '100%',
-            height: '100%'
+            height: '100%',
           }"
         ></div>
       </div>
@@ -54,7 +58,7 @@
       class="mx-auto grid gap-1 border"
       :style="{
         width: boxSize + 'px',
-        gridTemplateColumns: `repeat(${cols}, 1fr)`
+        gridTemplateColumns: `repeat(${cols}, 1fr)`,
       }"
     >
       <div
@@ -65,10 +69,10 @@
         :class="{ 'ring-2 ring-green-500': selectedTileIndex === index }"
         :style="{
           backgroundImage: `url(${image})`,
-          backgroundSize: `${boxSize}px ${(boxSize * rows / cols)}px`,
+          backgroundSize: `${boxSize}px ${(boxSize * rows) / cols}px`,
           backgroundPosition: tile.bgPos,
           backgroundRepeat: 'no-repeat',
-          backgroundColor: '#eee'
+          backgroundColor: '#eee',
         }"
       ></div>
     </div>
@@ -80,61 +84,63 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from "vue";
 
-const image = '/puzzle.png'
-const boxSize = 300
-const selectedSize = ref('3x3')
-const availableTiles = ref([])
-const placedTiles = ref([])
-const selectedTile = ref(null)
-const selectedTileIndex = ref(null)
-const isComplete = ref(false)
+const image = "/public/puzzle.png";
+const boxSize = 300;
+const selectedSize = ref("3x3");
+const availableTiles = ref([]);
+const placedTiles = ref([]);
+const selectedTile = ref(null);
+const selectedTileIndex = ref(null);
+const isComplete = ref(false);
 
-const cols = computed(() => parseInt(selectedSize.value.split('x')[0]))
-const rows = computed(() => parseInt(selectedSize.value.split('x')[1]))
+const cols = computed(() => parseInt(selectedSize.value.split("x")[0]));
+const rows = computed(() => parseInt(selectedSize.value.split("x")[1]));
 
 function initGame() {
-  const total = rows.value * cols.value
-  const temp = []
+  const total = rows.value * cols.value;
+  const temp = [];
   for (let i = 0; i < total; i++) {
-    const x = i % cols.value
-    const y = Math.floor(i / cols.value)
-    const w = boxSize / cols.value
-    const h = (boxSize * rows.value / cols.value) / rows.value
+    const x = i % cols.value;
+    const y = Math.floor(i / cols.value);
+    const w = boxSize / cols.value;
+    const h = (boxSize * rows.value) / cols.value / rows.value;
     temp.push({
       id: i,
       bgPos: `-${x * w}px -${y * h}px`,
-      position: i
-    })
+      position: i,
+    });
   }
-  availableTiles.value = [...temp].sort(() => Math.random() - 0.5)
-  placedTiles.value = Array(total).fill(null)
-  selectedTile.value = null
-  selectedTileIndex.value = null
-  isComplete.value = false
+  availableTiles.value = [...temp].sort(() => Math.random() - 0.5);
+  placedTiles.value = Array(total).fill(null);
+  selectedTile.value = null;
+  selectedTileIndex.value = null;
+  isComplete.value = false;
 }
 
 function selectTile(tile, index) {
-  selectedTile.value = tile
-  selectedTileIndex.value = index
+  selectedTile.value = tile;
+  selectedTileIndex.value = index;
 }
 
 function placeTileAt(positionIndex) {
-  if (!selectedTile.value) return
-  if (placedTiles.value[positionIndex] !== null) return
-  placedTiles.value[positionIndex] = selectedTile.value
-  availableTiles.value.splice(selectedTileIndex.value, 1)
-  selectedTile.value = null
-  selectedTileIndex.value = null
-  checkComplete()
+  if (!selectedTile.value) return;
+  if (placedTiles.value[positionIndex] !== null) return;
+  placedTiles.value[positionIndex] = selectedTile.value;
+  availableTiles.value.splice(selectedTileIndex.value, 1);
+  selectedTile.value = null;
+  selectedTileIndex.value = null;
+  checkComplete();
 }
 
 function checkComplete() {
-  isComplete.value = placedTiles.value.every((tile, i) => tile && tile.position === i)
+  isComplete.value = placedTiles.value.every(
+    (tile, i) => tile && tile.position === i
+  );
 }
 
-initGame()
+initGame();
 </script>
 
 <style scoped>
