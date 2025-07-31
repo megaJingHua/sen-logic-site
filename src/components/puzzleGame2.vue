@@ -922,7 +922,6 @@ function checkComplete() {
   position: relative;
   margin: 0 auto;
   display: grid;
-  gap: 0.25rem;
   border: 2px dashed #d1d5db;
   border-radius: 0.75rem;
   overflow: hidden;
