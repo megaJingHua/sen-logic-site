@@ -5,7 +5,7 @@
                  <!-- 標題區域 -->
          <div class="title-section">
            <div class="title-header">
-             <h1 class="game-title">森森🧩拼圖</h1>
+             <h1 class="game-title">(｡´•ㅅ•｡) 森森拼圖</h1>
            </div>
          </div>
 
@@ -483,7 +483,7 @@ function checkComplete() {
 onMounted(() => {
   // 自動滾動到步驟指示器頂部
   setTimeout(() => {
-    const stepIndicator = document.querySelector('.step-indicator');
+    const stepIndicator = document.querySelector('.step-indicator-container');
     if (stepIndicator) {
       stepIndicator.scrollIntoView({ 
         behavior: 'smooth', 
@@ -504,6 +504,8 @@ onMounted(() => {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .puzzle-game-container::before {
@@ -518,10 +520,13 @@ onMounted(() => {
 }
 
 .puzzle-game-wrapper {
-  max-width: 28rem;
+  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 /* 標題區域 */
@@ -553,6 +558,8 @@ onMounted(() => {
   margin-top: 1rem;
   gap: 1rem;
   position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 .back-nav-button {
@@ -571,7 +578,8 @@ onMounted(() => {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   position: absolute;
-  left: 0;
+  left: 0.5rem;
+  z-index: 10;
 }
 
 .back-nav-button:hover {
@@ -670,6 +678,9 @@ onMounted(() => {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .step-header {
@@ -886,6 +897,9 @@ onMounted(() => {
   justify-content: center;
   gap: 0.75rem;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
 .progress-label {
@@ -952,6 +966,10 @@ onMounted(() => {
 /* 目標區域 */
 .target-section {
   margin-bottom: 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .target-grid {
@@ -962,6 +980,7 @@ onMounted(() => {
   border-radius: 0.75rem;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.25);
+  max-width: 100%;
 }
 
 .target-cell {
@@ -1010,6 +1029,10 @@ onMounted(() => {
 /* 拼圖區域 */
 .puzzle-section {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .puzzle-grid {
@@ -1018,6 +1041,7 @@ onMounted(() => {
   gap: 0.5rem;
   border-radius: 0.75rem;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .puzzle-tile {
@@ -1314,6 +1338,23 @@ body {
   touch-action: manipulation;
   overscroll-behavior: contain;
   user-select: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* iOS Safari 特定優化 */
+@supports (-webkit-touch-callout: none) {
+  .puzzle-game-container {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .puzzle-game-wrapper {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .step-panel {
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 
