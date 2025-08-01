@@ -5,11 +5,7 @@
         <!-- 標題區域 -->
         <div class="title-section">
           <div class="title-header">
-            <RouterLink
-              to="/"
-              class="back-nav-button"
-              aria-label="回到上一頁"
-            >
+            <RouterLink to="/" class="back-nav-button" aria-label="回到上一頁">
               <svg
                 width="24"
                 height="24"
@@ -28,26 +24,32 @@
           </div>
         </div>
 
-        <!-- 步驟指示器 -->
-        <div class="step-indicator">
-          <div
-            class="step-item"
-            :class="{ active: currentStep >= 1, completed: currentStep > 1 }"
-          >
-            <div class="step-number">1</div>
-          </div>
-          <div class="step-line" :class="{ active: currentStep >= 2 }"></div>
-          <div
-            class="step-item"
-            :class="{ active: currentStep >= 2, completed: currentStep > 2 }"
-          >
-            <div class="step-number">2</div>
-          </div>
-          <div class="step-line" :class="{ active: currentStep >= 3 }"></div>
-          <div class="step-item" :class="{ active: currentStep >= 3 }">
-            <div class="step-number">3</div>
-          </div>
-        </div>
+                 <!-- 步驟指示器 -->
+         <div class="step-indicator">
+           <div
+             class="step-item"
+             :class="{ active: currentStep >= 1, completed: currentStep > 1 }"
+             @click="goToStep(1)"
+           >
+             <div class="step-number">1</div>
+           </div>
+           <div class="step-line" :class="{ active: currentStep >= 2 }"></div>
+           <div
+             class="step-item"
+             :class="{ active: currentStep >= 2, completed: currentStep > 2 }"
+             @click="goToStep(2)"
+           >
+             <div class="step-number">2</div>
+           </div>
+           <div class="step-line" :class="{ active: currentStep >= 3 }"></div>
+           <div 
+             class="step-item" 
+             :class="{ active: currentStep >= 3 }"
+             @click="goToStep(3)"
+           >
+             <div class="step-number">3</div>
+           </div>
+         </div>
 
         <!-- 第一步：難度選擇 -->
         <div v-if="currentStep === 1" class="step-content">
@@ -96,32 +98,38 @@
               </div>
             </div>
 
-            <div class="step-footer">
-              <button @click="prevStep" class="back-button">← 返回</button>
-            </div>
+            
           </div>
         </div>
 
         <!-- 第三步：拼圖遊戲 -->
         <div v-if="currentStep === 3" class="step-content">
           <div class="step-panel">
-            <!-- 進度指示器 -->
-            <div class="progress-container">
-              <span class="progress-label">進度</span>
-              <div class="progress-bar-wrapper">
-                <div class="progress-bar-bg">
-                  <div
-                    class="progress-bar-fill"
-                    :style="{ width: `${progressPercentage}%` }"
-                  >
-                    <div class="progress-bar-shine"></div>
-                  </div>
-                </div>
-              </div>
-              <span class="progress-text"
-                >{{ placedCount }}/{{ totalTiles }}</span
-              >
-            </div>
+                         <!-- 進度指示器 -->
+             <div class="progress-container">
+               <span class="progress-label">進度</span>
+               <div class="progress-bar-wrapper">
+                 <div class="progress-bar-bg">
+                   <div
+                     class="progress-bar-fill"
+                     :style="{ width: `${progressPercentage}%` }"
+                   >
+                     <div class="progress-bar-shine"></div>
+                   </div>
+                 </div>
+               </div>
+               <span class="progress-text"
+                 >{{ placedCount }}/{{ totalTiles }}</span
+               >
+               <button @click="resetGame" class="reset-icon-button" title="重新開始">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                   <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                   <path d="M21 3v5h-5"/>
+                   <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                   <path d="M3 21v-5h5"/>
+                 </svg>
+               </button>
+             </div>
 
             <!-- 上方：拼圖目標區 -->
             <div class="target-section">
@@ -201,12 +209,7 @@
               <p>💡 提示：點擊拼圖塊，然後點擊或拖曳到目標位置放置</p>
             </div>
 
-            <div class="step-footer">
-              <button @click="prevStep" class="back-button">← 返回</button>
-              <button @click="resetGame" class="reset-button">
-                ⟳ 重新開始
-              </button>
-            </div>
+            
           </div>
         </div>
 
@@ -242,7 +245,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { RouterLink } from "vue-router";
 import puzzleImage from "@/assets/puzzle.png";
 import schoolImage from "@/assets/school.png";
@@ -256,6 +259,7 @@ const currentStep = ref(1);
 const selectedSize = ref("");
 const selectedImageIndex = ref(null);
 const showCompletion = ref(false);
+const isFullscreen = ref(false);
 
 // 拼圖遊戲相關
 const boxSize = 300;
@@ -360,9 +364,10 @@ function selectImage(index) {
   }, 300);
 }
 
-function prevStep() {
-  if (currentStep.value > 1) {
-    currentStep.value--;
+function goToStep(step) {
+  // 只能跳轉到已完成的步驟或當前步驟
+  if (step <= currentStep.value) {
+    currentStep.value = step;
   }
 }
 
@@ -469,13 +474,88 @@ function checkComplete() {
     }, 500);
   }
 }
+
+// 全屏幕功能
+function enterFullscreen() {
+  if (!document.fullscreenElement) {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+      document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) {
+      document.documentElement.msRequestFullscreen();
+    }
+  }
+}
+
+function exitFullscreen() {
+  if (document.fullscreenElement) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    enterFullscreen();
+  } else {
+    exitFullscreen();
+  }
+}
+
+// 監聽全屏幕狀態變化
+function handleFullscreenChange() {
+  isFullscreen.value = !!document.fullscreenElement;
+}
+
+// 在組件掛載時添加事件監聽器並自動進入全屏
+onMounted(() => {
+  document.addEventListener("fullscreenchange", handleFullscreenChange);
+  document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+  document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+  // 自動進入全屏
+  setTimeout(() => {
+    enterFullscreen();
+  }, 500);
+
+  // 自動滾動到步驟指示器頂部
+  setTimeout(() => {
+    const stepIndicator = document.querySelector('.step-indicator');
+    if (stepIndicator) {
+      stepIndicator.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start',
+        inline: 'nearest'
+      });
+    }
+  }, 100);
+});
+
+// 在組件卸載時移除事件監聽器並退出全屏
+onUnmounted(() => {
+  document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  document.removeEventListener(
+    "webkitfullscreenchange",
+    handleFullscreenChange
+  );
+  document.removeEventListener("msfullscreenchange", handleFullscreenChange);
+
+  // 自動退出全屏
+  exitFullscreen();
+});
 </script>
 
 <style scoped>
 /* 主容器 */
 .puzzle-game-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c65bb  100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c65bb 100%);
   padding: 1rem 0.6rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   position: relative;
@@ -566,6 +646,8 @@ function checkComplete() {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .step-number {
@@ -591,6 +673,11 @@ function checkComplete() {
   background: rgba(255, 255, 255, 0.2);
   color: #ffffff;
   backdrop-filter: blur(10px);
+}
+
+.step-item:hover .step-number {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
 }
 
 .step-text {
@@ -638,7 +725,7 @@ function checkComplete() {
   border-radius: 1.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .step-header {
@@ -826,23 +913,51 @@ function checkComplete() {
 
 /* 遊戲界面 */
 
-.reset-button {
+.reset-icon-button {
   background: rgba(255, 255, 255, 0.2);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
 }
 
-.reset-button:hover {
+.reset-icon-button:hover {
   background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+  transform: scale(1.1) rotate(180deg);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 全屏幕狀態指示 */
+.fullscreen-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.fullscreen-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  animation: fadeIn 0.5s ease-out;
 }
 
 /* 進度條 */
@@ -851,6 +966,7 @@ function checkComplete() {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  position: relative;
 }
 
 .progress-label {
@@ -999,7 +1115,6 @@ function checkComplete() {
   width: 100%;
   height: 100%;
   cursor: grab;
-  border: 2px solid #e5e7eb;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -1288,6 +1403,35 @@ body {
   touch-action: manipulation;
   overscroll-behavior: contain;
   user-select: none;
+}
+
+/* 全屏幕模式樣式 */
+:fullscreen {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c65bb 100%);
+}
+
+:-webkit-full-screen {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c65bb 100%);
+}
+
+:-ms-fullscreen {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c65bb 100%);
+}
+
+/* 全屏幕時隱藏瀏覽器UI */
+:fullscreen .puzzle-game-container {
+  padding: 0;
+  min-height: 100vh;
+}
+
+:-webkit-full-screen .puzzle-game-container {
+  padding: 0;
+  min-height: 100vh;
+}
+
+:-ms-fullscreen .puzzle-game-container {
+  padding: 0;
+  min-height: 100vh;
 }
 </style>
 
