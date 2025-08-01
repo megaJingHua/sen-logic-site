@@ -2,52 +2,54 @@
   <MobileOnly>
     <div class="puzzle-game-container">
       <div class="puzzle-game-wrapper">
-        <!-- 標題區域 -->
-        <div class="title-section">
-          <div class="title-header">
-            <RouterLink to="/" class="back-nav-button" aria-label="回到上一頁">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </RouterLink>
-            <h1 class="game-title">拼圖🧩Puzzle</h1>
-            <div class="title-spacer"></div>
-          </div>
-        </div>
+                 <!-- 標題區域 -->
+         <div class="title-section">
+           <div class="title-header">
+             <h1 class="game-title">森森🧩拼圖</h1>
+           </div>
+         </div>
 
-                 <!-- 步驟指示器 -->
-         <div class="step-indicator">
-           <div
-             class="step-item"
-             :class="{ active: currentStep >= 1, completed: currentStep > 1 }"
-             @click="goToStep(1)"
-           >
-             <div class="step-number">1</div>
-           </div>
-           <div class="step-line" :class="{ active: currentStep >= 2 }"></div>
-           <div
-             class="step-item"
-             :class="{ active: currentStep >= 2, completed: currentStep > 2 }"
-             @click="goToStep(2)"
-           >
-             <div class="step-number">2</div>
-           </div>
-           <div class="step-line" :class="{ active: currentStep >= 3 }"></div>
-           <div 
-             class="step-item" 
-             :class="{ active: currentStep >= 3 }"
-             @click="goToStep(3)"
-           >
-             <div class="step-number">3</div>
+         <!-- 步驟指示器與返回按鈕 -->
+         <div class="step-indicator-container">
+           <RouterLink to="/" class="back-nav-button" aria-label="回到上一頁">
+             <svg
+               width="15"
+               height="15"
+               viewBox="2 2 20 20"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="3"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+             >
+               <path d="M15 18l-6-6 6-6" />
+             </svg>
+           </RouterLink>
+           
+           <div class="step-indicator">
+             <div
+               class="step-item"
+               :class="{ active: currentStep >= 1, completed: currentStep > 1 }"
+               @click="goToStep(1)"
+             >
+               <div class="step-number">1</div>
+             </div>
+             <div class="step-line" :class="{ active: currentStep >= 2 }"></div>
+             <div
+               class="step-item"
+               :class="{ active: currentStep >= 2, completed: currentStep > 2 }"
+               @click="goToStep(2)"
+             >
+               <div class="step-number">2</div>
+             </div>
+             <div class="step-line" :class="{ active: currentStep >= 3 }"></div>
+             <div 
+               class="step-item" 
+               :class="{ active: currentStep >= 3 }"
+               @click="goToStep(3)"
+             >
+               <div class="step-number">3</div>
+             </div>
            </div>
          </div>
 
@@ -172,6 +174,10 @@
               </div>
             </div>
 
+            <!-- 操作提示 -->
+            <div class="help-text">
+              <p>💡 提示：點擊拼圖塊，再點擊目標位置放置</p>
+            </div>
             <!-- 下方：可選拼圖區 -->
             <div class="puzzle-section">
               <div
@@ -204,10 +210,6 @@
               </div>
             </div>
 
-            <!-- 操作提示 -->
-            <div class="help-text">
-              <p>💡 提示：點擊拼圖塊，然後點擊或拖曳到目標位置放置</p>
-            </div>
 
             
           </div>
@@ -245,7 +247,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { RouterLink } from "vue-router";
 import puzzleImage from "@/assets/puzzle.png";
 import schoolImage from "@/assets/school.png";
@@ -259,10 +261,10 @@ const currentStep = ref(1);
 const selectedSize = ref("");
 const selectedImageIndex = ref(null);
 const showCompletion = ref(false);
-const isFullscreen = ref(false);
+
 
 // 拼圖遊戲相關
-const boxSize = 300;
+const boxSize = 350;
 const availableTiles = ref([]);
 const placedTiles = ref([]);
 const selectedTile = ref(null);
@@ -475,55 +477,10 @@ function checkComplete() {
   }
 }
 
-// 全屏幕功能
-function enterFullscreen() {
-  if (!document.fullscreenElement) {
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    } else if (document.documentElement.webkitRequestFullscreen) {
-      document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) {
-      document.documentElement.msRequestFullscreen();
-    }
-  }
-}
 
-function exitFullscreen() {
-  if (document.fullscreenElement) {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-  }
-}
 
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    enterFullscreen();
-  } else {
-    exitFullscreen();
-  }
-}
-
-// 監聽全屏幕狀態變化
-function handleFullscreenChange() {
-  isFullscreen.value = !!document.fullscreenElement;
-}
-
-// 在組件掛載時添加事件監聽器並自動進入全屏
+// 在組件掛載時自動滾動到步驟指示器頂部
 onMounted(() => {
-  document.addEventListener("fullscreenchange", handleFullscreenChange);
-  document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-  document.addEventListener("msfullscreenchange", handleFullscreenChange);
-
-  // 自動進入全屏
-  setTimeout(() => {
-    enterFullscreen();
-  }, 500);
-
   // 自動滾動到步驟指示器頂部
   setTimeout(() => {
     const stepIndicator = document.querySelector('.step-indicator');
@@ -535,19 +492,6 @@ onMounted(() => {
       });
     }
   }, 100);
-});
-
-// 在組件卸載時移除事件監聽器並退出全屏
-onUnmounted(() => {
-  document.removeEventListener("fullscreenchange", handleFullscreenChange);
-  document.removeEventListener(
-    "webkitfullscreenchange",
-    handleFullscreenChange
-  );
-  document.removeEventListener("msfullscreenchange", handleFullscreenChange);
-
-  // 自動退出全屏
-  exitFullscreen();
 });
 </script>
 
@@ -571,7 +515,6 @@ onUnmounted(() => {
   bottom: 0;
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="40" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="60" cy="60" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="30" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="90" cy="70" r="1" fill="rgba(255,255,255,0.06)"/></svg>');
   pointer-events: none;
-  opacity: 0.6;
 }
 
 .puzzle-game-wrapper {
@@ -588,17 +531,36 @@ onUnmounted(() => {
 
 .title-header {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.904);
+  text-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+  text-align: center;
+  margin: 0;
+}
+
+/* 步驟指示器容器 */
+.step-indicator-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   gap: 1rem;
+  position: relative;
 }
 
 .back-nav-button {
   background: rgba(255, 255, 255, 0.2);
   color: #4a5568;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   font-weight: 600;
   cursor: pointer;
@@ -606,9 +568,10 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(15px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-decoration: none;
+  position: absolute;
+  left: 0;
 }
 
 .back-nav-button:hover {
@@ -618,26 +581,11 @@ onUnmounted(() => {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.game-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: white;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  flex: 1;
-  text-align: center;
-  margin: 0;
-}
-
-.title-spacer {
-  width: 2.5rem;
-}
-
 /* 步驟指示器 */
 .step-indicator {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
   gap: 0.5rem;
 }
 
@@ -665,14 +613,12 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.25);
   color: #ffffff;
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
   font-weight: 700;
 }
 
 .step-item.completed .step-number {
   background: rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  backdrop-filter: blur(10px);
 }
 
 .step-item:hover .step-number {
@@ -700,7 +646,6 @@ onUnmounted(() => {
 
 .step-line.active {
   background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(5px);
 }
 
 /* 步驟內容 */
@@ -721,7 +666,6 @@ onUnmounted(() => {
 
 .step-panel {
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
   border-radius: 1.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -765,7 +709,6 @@ onUnmounted(() => {
   cursor: pointer;
   transition: all 0.3s;
   font-size: 0.875rem;
-  backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -806,7 +749,6 @@ onUnmounted(() => {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s;
-  backdrop-filter: blur(15px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -869,7 +811,6 @@ onUnmounted(() => {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s;
-  backdrop-filter: blur(15px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -922,7 +863,6 @@ onUnmounted(() => {
   border: 1px solid rgba(255, 255, 255, 0.3);
   cursor: pointer;
   transition: all 0.3s;
-  backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -937,28 +877,7 @@ onUnmounted(() => {
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* 全屏幕狀態指示 */
-.fullscreen-indicator {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
 
-.fullscreen-badge {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  animation: fadeIn 0.5s ease-out;
-}
 
 /* 進度條 */
 .progress-container {
@@ -984,18 +903,19 @@ onUnmounted(() => {
 .progress-bar-bg {
   width: 100%;
   height: 0.75rem;
-  background: #e5e7eb;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 9999px;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: rgba(255, 255, 255, 0.3);
+  background: linear-gradient(90deg, #8f4cff 0%, #729bff 50%, #9ddaff 100%);
   transition: width 0.7s ease-out;
   position: relative;
-  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.4);
 }
 
 .progress-bar-shine {
@@ -1031,51 +951,39 @@ onUnmounted(() => {
 
 /* 目標區域 */
 .target-section {
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 }
 
 .target-grid {
   position: relative;
   margin: 0 auto;
   display: grid;
-  border: 2px dashed #d1d5db;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
   border-radius: 0.75rem;
   overflow: hidden;
-  background: #f9fafb;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .target-cell {
   width: 100%;
   height: 100%;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   position: relative;
-  background: white;
+  background: rgba(255, 255, 255, 0.4);
   transition: all 0.3s;
   cursor: pointer;
 }
 
 .target-cell:hover {
-  background: #f9fafb;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .target-cell-filled {
-  background: #f0fdf4;
-  border-color: #86efac;
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
-.target-cell-empty {
-  animation: pulse 2s infinite;
-}
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
 
 .tile-image {
   width: 100%;
@@ -1094,8 +1002,9 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0.8;
   pointer-events: none;
+  z-index: -1;
 }
 
 /* 拼圖區域 */
@@ -1119,12 +1028,14 @@ onUnmounted(() => {
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
-  background-color: #f8fafc;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .puzzle-tile:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .puzzle-tile-selected {
@@ -1160,6 +1071,9 @@ onUnmounted(() => {
   margin-top: 1rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
+.help-text p {
+  margin: 0rem 0rem 0.5rem 0rem;
+}
 
 /* 完成提示 */
 .completion-overlay {
@@ -1174,7 +1088,6 @@ onUnmounted(() => {
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.5s ease-out;
-  backdrop-filter: blur(8px);
 }
 
 .completion-modal {
@@ -1204,7 +1117,6 @@ onUnmounted(() => {
   max-width: 24rem;
   overflow: hidden;
   position: relative;
-  backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -1371,7 +1283,6 @@ onUnmounted(() => {
   cursor: pointer;
   transition: all 0.3s;
   font-size: 1rem;
-  backdrop-filter: blur(10px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -1405,34 +1316,7 @@ body {
   user-select: none;
 }
 
-/* 全屏幕模式樣式 */
-:fullscreen {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c65bb 100%);
-}
 
-:-webkit-full-screen {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c65bb 100%);
-}
-
-:-ms-fullscreen {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #5c65bb 100%);
-}
-
-/* 全屏幕時隱藏瀏覽器UI */
-:fullscreen .puzzle-game-container {
-  padding: 0;
-  min-height: 100vh;
-}
-
-:-webkit-full-screen .puzzle-game-container {
-  padding: 0;
-  min-height: 100vh;
-}
-
-:-ms-fullscreen .puzzle-game-container {
-  padding: 0;
-  min-height: 100vh;
-}
 </style>
 
 
