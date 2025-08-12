@@ -216,7 +216,7 @@
 
 <script setup>
 import { ref } from "vue";
-import TodoItem from "@/components/learnVue3/day2/TodoItem.vue";
+import TodoItem from "./todoListItem.vue";
 import MobileOnly from "@/components/MobileOnly.vue";
 
 const newTodo = ref("");

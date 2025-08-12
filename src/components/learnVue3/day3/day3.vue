@@ -198,7 +198,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import TodoItem from "@/components/learnVue3/day3/TodoItem.vue";
+import TodoItem from "./todoListItem.vue";
 
 // 新增任務的輸入框
 const newTodo = ref("");
