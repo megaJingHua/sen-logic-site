@@ -17,6 +17,7 @@ function handleDelete() {
 }
 </script>
 
+
 <style scoped>
 li {
   cursor: pointer;

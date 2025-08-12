@@ -14,6 +14,7 @@ import { ref, watch } from "vue";
 const props = defineProps(["item", "index"]);
 const emit = defineEmits(["update", "remove"]);
 
+
 const localDone = ref(props.item.done);
 
 // 看著 props 的 done，有變就同步更新 localDone
