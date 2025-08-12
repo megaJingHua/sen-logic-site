@@ -8,12 +8,12 @@
           <RouterLink to="/mom-share" class="back-icon-btn" aria-label="回首頁">
             <!-- 使用 SVG icon -->
             <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              viewBox="0 0 28 24"
               fill="none"
               stroke="#4b814b"
-              stroke-width="2.5"
+              stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
             >

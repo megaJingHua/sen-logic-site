@@ -6,12 +6,12 @@
           <RouterLink to="/" class="back-icon-btn" aria-label="回首頁">
             <!-- 使用 SVG icon -->
             <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              viewBox="0 0 28 24"
               fill="none"
               stroke="#4b814b"
-              stroke-width="2.5"
+              stroke-width="3"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
@@ -58,17 +58,17 @@ const days = ref([
     id: 2,
     title: "組件是什麼？我為什麼要拆？",
     detail:
-      "  你可以把網頁想像成一個樂高積木城堡。每個「積木」就是一個組件（component）比如：按鈕是一塊積木、輸入框是一塊積木、待辦清單的每一項也是一塊積木。<br /><br />今天帶你用最簡單的例子——「Todo List」來學會：✅組件拆分 ✅父子傳值 ✅用 props 傳資料，用emit 回報訊息！",
+      "  你可以把網頁想像成一個樂高積木城堡。每個「積木」就是一個組件（component）比如：按鈕是一塊積木、輸入框是一塊積木、待辦清單的每一項也是一塊積木。今天帶你用最簡單的例子——「Todo List」來學會：✅組件拆分 ✅父子傳值 ✅用 props 傳資料，用emit 回報訊息！",
     router: "/day2",
     comming_soon: false,
   },
   {
     id: 3,
-    title: "生命周期 Hook 與資料監控",
+    title: "computed 和 watch 怎麼幫你「看家」？",
     detail:
-      "深入理解 Vue 的 computed 與 watch 差異，掌握資料變動的監控與處理時機。透過優化版 Todo List，加入完成狀態切換與資料同步，進一步體驗組件間的互動與資料追蹤技巧！",
+      "媽媽每天最怕什麼？就是「重複問問題、重複做事情」。電鍋要煮飯 → 看燈變沒？小孩洗完澡 → 地上濕沒？這些「重複檢查」、「自動反應」的事，Vue 也有喔！今天要認識兩個 Vue 的小幫手：computed, watch!",
     router: "/day3",
-    comming_soon: true,
+    comming_soon: false,
   },
 ]);
 
@@ -82,10 +82,35 @@ function markComplete(idx) {
 <style>
 .momshare-bg {
   min-height: 100vh;
-  background: #f8f8e8 url("@/assets/rabbit_computer_upscaled.png") center bottom
-    no-repeat fixed;
-  background-size: contain;
+  background: #f8f8e8 url("@/assets/mom-share.png") center center
+    no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   padding: 0;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.momshare-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.055);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* iOS Safari 特定優化 */
+@supports (-webkit-touch-callout: none) {
+  .momshare-bg {
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
 }
 .title-row {
   display: flex;
@@ -110,6 +135,8 @@ h1 {
   padding-left: 16px;
   padding-right: 16px;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 .progress-title {
   font-size: 1.5em;
@@ -122,5 +149,7 @@ h1 {
   max-width: 480px;
   margin: 0 auto;
   padding: 0 16px 40px 16px;
+  position: relative;
+  z-index: 2;
 }
 </style>

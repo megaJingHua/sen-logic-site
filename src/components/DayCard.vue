@@ -39,7 +39,7 @@ function toggle() {
   border-radius: 18px;
   margin: 16px 0;
   padding: 0;
-  background: rgba(248, 248, 232, 0.95);
+  background: rgba(248, 248, 232, 0.568);
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
