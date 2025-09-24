@@ -4,6 +4,7 @@ import MomShare from '@/views/MomSharePage/MomShare.vue'
 import day1 from '@/components/learnVue3/day1.vue'
 import day2 from '@/components/learnVue3/day2/day2.vue'
 import day3 from '@/components/learnVue3/day3/day3.vue'
+import day4 from '@/components/learnVue3/day4.vue'
 import puzzleGame2 from '@/components/puzzleGame2.vue'
 
 const routes = [
@@ -14,7 +15,8 @@ const routes = [
   { path: '/support', component: { template: '<div>贊助我們</div>' } },
   { path: '/learn-vue3/day1', component: day1 },
   { path: '/learn-vue3/day2', component: day2 },
-  { path: '/learn-vue3/day3', component: day3 }
+  { path: '/learn-vue3/day3', component: day3 },
+  { path: '/learn-vue3/day4', component: day4 }
 ]
 
 export default createRouter({

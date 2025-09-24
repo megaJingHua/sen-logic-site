@@ -70,6 +70,14 @@ const days = ref([
     router: "/day3",
     comming_soon: false,
   },
+  {
+    id: 4,
+    title: "從單一房間到多房間—Vue Router",
+    detail:
+      "你可以把「網站」想成一間房子，房子的大門就是你的首頁 (Home)，房間就像每個不同的功能頁面， 而走廊就是 Router（路由），它負責帶你從大門走到不同的房間。",
+    router: "/day4",
+    comming_soon: false,
+  },
 ]);
 
 const completedDays = days.value.length;
