@@ -71,11 +71,16 @@
               <h3 class="text-lg font-bold text-[#4b814b] mb-2">
                 ✅ 2. 畫設計圖（router.js）
               </h3>
-              <p class="mb-3">告訴 Vue：「有幾個房間？門牌是多少？」</p>
+              <p class="mb-3">
+                告訴 Vue：「有幾個房間？門牌是多少？」還需要告訴 Vue 房間的內容
+              </p>
               <pre
                 v-pre
                 class="code-block bg-[#1e1e1e] rounded-lg p-4 overflow-x-auto text-sm mb-4 text-white"
-              ><code><span style="color: #569cd6;">const</span> <span style="color: #9cdcfe;">routes</span> = [
+              ><code><span style="color: #569cd6;">import</span> <span style="color: #4ec9b0;">Home</span> <span style="color: #569cd6;">from</span> <span style="color: #ce9178;">'./views/Home.vue'</span>
+<span style="color: #569cd6;">import</span> <span style="color: #4ec9b0;">About</span> <span style="color: #569cd6;">from</span> <span style="color: #ce9178;">'./views/About.vue'</span>
+
+<span style="color: #569cd6;">const</span> <span style="color: #9cdcfe;">routes</span> = [
   { <span style="color: #9cdcfe;">path</span>: <span style="color: #ce9178;">'/'</span>, <span style="color: #9cdcfe;">component</span>: <span style="color: #4ec9b0;">Home</span> },   <span style="color: #6a9955; font-style: italic;">// 大門 → 首頁</span>
   { <span style="color: #9cdcfe;">path</span>: <span style="color: #ce9178;">'/about'</span>, <span style="color: #9cdcfe;">component</span>: <span style="color: #4ec9b0;">About</span> } <span style="color: #6a9955; font-style: italic;">// 另一個房間 → 關於我們</span>
 ]</code></pre>
@@ -98,13 +103,17 @@
               <h3 class="text-lg font-bold text-[#4b814b] mb-2">
                 ✅4. 放一個「導航菜單」(App.vue)
               </h3>
-              <p class="mb-3">就像家裡玄關放了兩個牌子：「去客廳」、「去廚房」。</p>
+              <p class="mb-3">
+                就像家裡玄關放了兩個牌子：「去客廳」、「去廚房」。
+              </p>
               <pre
                 v-pre
                 class="code-block bg-[#1e1e1e] rounded-lg p-4 overflow-x-auto text-sm mb-4 text-white"
               ><code><span style="color: #569cd6;">&lt;router-link</span> <span style="color: #9cdcfe;">to</span>=<span style="color: #ce9178;">"/"</span><span style="color: #569cd6;">&gt;</span>首頁<span style="color: #569cd6;">&lt;/router-link&gt;</span>
 <span style="color: #569cd6;">&lt;router-link</span> <span style="color: #9cdcfe;">to</span>=<span style="color: #ce9178;">"/about"</span><span style="color: #569cd6;">&gt;</span>關於我們<span style="color: #569cd6;">&lt;/router-link&gt;</span></code></pre>
-              <p class="mb-3">當你點導航的時候，網站會把「顯示的頁面」換掉，就像你走到另一間房。</p>
+              <p class="mb-3">
+                當你點導航的時候，網站會把「顯示的頁面」換掉，就像你走到另一間房。
+              </p>
             </div>
           </div>
         </div>
